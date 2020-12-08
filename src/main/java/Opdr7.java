@@ -1,11 +1,11 @@
+import helperObjects.Bag;
+import utils.ReadFileUtil;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import helperObjects.Bag;
-import utils.ReadFileUtil;
 
 public class Opdr7 extends AbstractOpdr {
 
@@ -30,20 +30,19 @@ public class Opdr7 extends AbstractOpdr {
     private Map<String, Bag> buildBagMap(List<String> bagLines) {
         Map<String, Bag> bags = new HashMap<>();
         String bagRegex = "(.*) bags contain (.*)\\.";
-        String bagContentRegex = "(\\d+) (.*) bags?";
-
         for (String bagLine : bagLines) {
             Matcher matcher = Pattern.compile(bagRegex).matcher(bagLine);
             if (matcher.matches()) {
                 String bagName = matcher.group(1);
                 Bag bag = getOrAddBag(bags, bagName);
-                addInnerBags(bags, bagContentRegex, bag, matcher.group(2));
+                addInnerBags(bags, bag, matcher.group(2));
             }
         }
         return bags;
     }
 
-    private void addInnerBags(Map<String, Bag> bags, String bagContentRegex, Bag bag, String contents) {
+    private void addInnerBags(Map<String, Bag> bags, Bag bag, String contents) {
+        String bagContentRegex = "(\\d+) (.*) bags?";
         for (String bagContent : contents.split(", ")) {
             Matcher contentMatcher = Pattern.compile(bagContentRegex).matcher(bagContent);
             if (contentMatcher.matches()) {
