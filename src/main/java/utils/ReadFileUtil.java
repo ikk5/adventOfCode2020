@@ -11,7 +11,7 @@ public class ReadFileUtil {
     public static List<Integer> readIntFile(String filename) {
         List<Integer> input = new ArrayList<>();
         try {
-            File myObj = new File("D:\\AoC2020\\src\\main\\resources\\" + filename);
+            File myObj = new File("D:\\adventOfCode2020\\src\\main\\resources\\" + filename);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -28,7 +28,7 @@ public class ReadFileUtil {
     public static List<String> readStringFile(String filename) {
         List<String> input = new ArrayList<>();
         try {
-            File myObj = new File("D:\\AoC2020\\src\\main\\resources\\" + filename);
+            File myObj = new File("D:\\adventOfCode2020\\src\\main\\resources\\" + filename);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
