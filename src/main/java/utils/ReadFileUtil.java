@@ -25,6 +25,23 @@ public class ReadFileUtil {
         return input;
     }
 
+    public static List<Long> readLongFile(String filename) {
+        List<Long> input = new ArrayList<>();
+        try {
+            File myObj = new File(".\\src\\main\\resources\\" + filename);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                input.add(Long.valueOf(data));
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return input;
+    }
+
     public static List<String> readStringFile(String filename) {
         List<String> input = new ArrayList<>();
         try {
